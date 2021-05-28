@@ -2,14 +2,15 @@ import discord
 from discord.ext import commands
 import random
 import asyncio
+import os
+from dotenv import load_dotenv
 
-TOKEN = 'ODMzODY1MzE5MzM1NzIzMDQ5.YH4jmA.cx9EXvhr8ctegoo2vwbWO5NXtA8'
-
+load_dotenv()
 client = discord.Client() #Since bots require a prefix, and we want DaBot to respond to random messages, use a client
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client)) #Prints a message in the terminal to signify bot is ready for use
+    print('Logged in as {0.user}'.format(client)) #Prints a message in the terminal to signify bot is ready for use
     game = discord.Game("with myself, Let's Go!") #Set bot status
     await client.change_presence(status=discord.Status.online, activity=game)
     #Continue the loop forever
@@ -45,6 +46,6 @@ async def on_message(ctx):
             await ctx.channel.send("Let\'s Go!")
             await ctx.channel.send(random.choice(gifs)) #Send a random dababy gif from the list
    
-client.run(TOKEN)
+client.run(os.getenv("DISCORD_TOKEN"))
 
 
