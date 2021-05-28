@@ -28,7 +28,7 @@ async def on_ready():
                         member_ids = channel.voice_states.keys() #After the 15-20 minutes participants could have left so check to see if occupants are still there
                         if member_ids:
                             vc = await channel.connect()
-                            vc.play(discord.FFmpegPCMAudio(executable="C:/Program Files (x86)/FFmpeg for Audacity/ffmpeg.exe", source="audio.opus")) #Provide path to ffmpeg.exe file and audio source
+                            vc.play(discord.FFmpegPCMAudio(executable={path to ffmpeg.exe}, source="audio.opus")) #Provide path to ffmpeg.exe file and audio source
                             await asyncio.sleep(3.5) #Wait until duration of audio clip and then dc
                             print("Audio successfuly played...")
                             await vc.disconnect()
